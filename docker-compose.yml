@@ -10,8 +10,8 @@ services:
       - "6756:6756"
       - "6450:6450"
     environment:
-      CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/xray/normal/mix"
-      # CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/warp/config"
+      # CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/xray/normal/mix"
+      CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/warp/config"
       # CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/warp/config.json"
     volumes:
       - ./hiddify-data/:/hiddify/data/:Z
