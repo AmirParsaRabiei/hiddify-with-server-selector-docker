@@ -9,22 +9,19 @@ services:
       - "6756:6756"
       - "6450:6450"
     environment:
-      # CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/xray/normal/mix"
-      CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/warp/config"
+      CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/xray/normal/mix"
+      # CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/warp/config"
       # CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/warp/config.json"
     volumes:
       - ./data/:/hiddify/data/:Z
+      - ./healthcheck.sh:/opt/healthcheck.sh:Z
     command: [ "/opt/hiddify.sh" ]
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "curl --fail http://localhost:6756 || exit 1"
-        ]
+      test: [ "CMD-SHELL", "/opt/healthcheck.sh" ]
       interval: 30s
       timeout: 10s
       retries: 5
-      start_period: 30s
+      start_period: 60s
     restart: always
 
   server-selector:
