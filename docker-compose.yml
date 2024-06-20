@@ -11,7 +11,7 @@ services:
     environment:
       CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/xray/normal/mix"
     volumes:
-      - ./data/:/hiddify/data/
+      - ./data/:/hiddify/data/:Z
     command: [ "/opt/hiddify.sh" ]
     healthcheck:
       test:
@@ -23,6 +23,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 30s
+    restart: always
 
   server-selector:
     build:
@@ -44,3 +45,4 @@ services:
     depends_on:
       hiddify:
         condition: service_healthy
+    restart: always

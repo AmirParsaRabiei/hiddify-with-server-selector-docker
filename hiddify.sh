@@ -32,7 +32,7 @@
 
 
 if [ -f "/hiddify/data/hiddify.json" ]; then
-    /hiddify/HiddifyCli run --config "$CONFIG" -h /hiddify/data/hiddify.json
+    /hiddify/HiddifyCli run --config "$CONFIG" --hiddify /hiddify/data/hiddify.json
 else
     /hiddify/HiddifyCli run --config "$CONFIG"
 fi

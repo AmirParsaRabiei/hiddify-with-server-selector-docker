@@ -1,6 +1,6 @@
 {
     "execute-config-as-is": false,
-    "log-level": "warn",
+    "log-level": "trace",
     "resolve-destination": false,
     "ipv6-mode": "ipv4_only",
     "remote-dns-address": "udp://1.1.1.1",
@@ -12,7 +12,7 @@
     "local-dns-port": 6450,
     "tun-implementation": "mixed",
     "mtu": 9000,
-    "strict-route": true,
+    "strict-route": false,
     "connection-test-url": "http://cp.cloudflare.com/",
     "url-test-interval": 600,
     "enable-clash-api": true,
@@ -21,7 +21,7 @@
     "enable-tun": false,
     "enable-tun-service": false,
     "set-system-proxy": false,
-    "bypass-lan": true,
+    "bypass-lan": false,
     "allow-connection-from-lan": true,
     "enable-fake-dns": false,
     "enable-dns-routing": true,
@@ -41,6 +41,18 @@
         "padding-size": "1-1500"
     },
     "warp": {
+        "enable": false,
+        "mode": "proxy_over_warp",
+        "wireguard-config": "",
+        "license-key": "",
+        "account-id": "",
+        "access-token": "",
+        "clean-ip": "auto",
+        "clean-port": 0,
+        "noise": "5-10",
+        "noise-delay": "20-200"
+    },
+    "warp2": {
         "enable": false,
         "mode": "proxy_over_warp",
         "wireguard-config": "",
