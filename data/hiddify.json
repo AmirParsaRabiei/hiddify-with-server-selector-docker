@@ -1,6 +1,6 @@
 {
     "execute-config-as-is": false,
-    "log-level": "trace",
+    "log-level": "warn",
     "resolve-destination": false,
     "ipv6-mode": "ipv4_only",
     "remote-dns-address": "udp://1.1.1.1",
