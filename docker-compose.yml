@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  hiddify:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "2334:2334"
+      - "6756:6756"
+      - "6450:6450"
+    environment:
+      CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/xray/normal/mix"
+    volumes:
+      - ./data/:/hiddify/data/
+    command: [ "/opt/hiddify.sh" ]
+
+  server-selector:
+    dockerfile: singbox-server-selector/Dockerfile
+    environment:
+      API_URL: "http://hiddify:6756"
+      BEARER_TOKEN: "xXxLocalDockerxXx"
+      TEST_URL: "http://cp.cloudflare.com"
+      TIMEOUT: 5000
+      RETRIES: 60
+      RETRY_DELAY: 10
+      MIN_UPTIME: 90
+      CHECK_INTERVAL: 60
+      UPDATE_INTERVAL: 14400
+      PROXY_GROUP_NAME: "select"
+      LIGHT_MODE: 0
+      LIGHTMODE_MAXIMUM_SERVERS: 10
