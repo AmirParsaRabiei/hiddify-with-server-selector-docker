@@ -26,7 +26,8 @@ services:
 
   server-selector:
     build:
-      dockerfile: singbox-server-selector/Dockerfile
+      context: ./singbox-server-selector
+      dockerfile: Dockerfile
     environment:
       API_URL: "http://hiddify:6756"
       BEARER_TOKEN: "xXxLocalDockerxXx"
