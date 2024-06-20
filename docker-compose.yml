@@ -56,8 +56,8 @@ services:
       - ./openvpn-data/:/vpn/:Z
     environment:
       - OPENVPN_CONFIG=/vpn/vpn.ovpn
-      - SOCKS5_USER=myuser
-      - SOCKS5_PASS=mypass
+      - SOCKS5_USER=
+      - SOCKS5_PASS=
     ports:
       - "1080:1080"
     restart: always
