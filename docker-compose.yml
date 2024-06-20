@@ -13,7 +13,7 @@ services:
       # CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/warp/config"
       # CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/warp/config.json"
     volumes:
-      - ./data/:/hiddify/data/:Z
+      - ./hiddify-data/:/hiddify/data/:Z
       - ./healthcheck.sh:/opt/healthcheck.sh:Z
     command: [ "/opt/hiddify.sh" ]
     healthcheck:
@@ -44,4 +44,20 @@ services:
     depends_on:
       hiddify:
         condition: service_healthy
+    restart: always
+
+  openvpn-socks5:
+    image: curve25519xsalsa20poly1305/openvpn-socks5
+    devices:
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./openvpn-data/:/vpn/:Z
+    environment:
+      - OPENVPN_CONFIG=/vpn/vpn.ovpn
+      - SOCKS5_USER=myuser
+      - SOCKS5_PASS=mypass
+    ports:
+      - "1080:1080"
     restart: always
