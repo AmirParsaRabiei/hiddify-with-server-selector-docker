@@ -13,9 +13,20 @@ services:
     volumes:
       - ./data/:/hiddify/data/
     command: [ "/opt/hiddify.sh" ]
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl --fail http://localhost:6756 || exit 1"
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
 
   server-selector:
-    dockerfile: singbox-server-selector/Dockerfile
+    build:
+      dockerfile: singbox-server-selector/Dockerfile
     environment:
       API_URL: "http://hiddify:6756"
       BEARER_TOKEN: "xXxLocalDockerxXx"
@@ -29,3 +40,6 @@ services:
       PROXY_GROUP_NAME: "select"
       LIGHT_MODE: 0
       LIGHTMODE_MAXIMUM_SERVERS: 10
+    depends_on:
+      hiddify:
+        condition: service_healthy
