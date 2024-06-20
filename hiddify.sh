@@ -31,10 +31,18 @@
 # iptables -t mangle -A PREROUTING -j hiddify
 
 
-if [ -f "/hiddify/data/hiddify.json" ]; then
-    /hiddify/HiddifyCli run --config "$CONFIG" --hiddify /hiddify/data/hiddify.json
-else
-    /hiddify/HiddifyCli run --config "$CONFIG"
-fi
-
+while true; do
+    # Kill all running instances of HiddifyCli
+    killall HiddifyCli
+    
+    # Check if the hiddify.json configuration file exists
+    if [ -f "/hiddify/data/hiddify.json" ]; then
+        /hiddify/HiddifyCli run --config "$CONFIG" --hiddify /hiddify/data/hiddify.json &
+    else
+        /hiddify/HiddifyCli run --config "$CONFIG" &
+    fi
+    
+    # Wait for 12 hours before restarting the loop
+    sleep 12h
+done
 
