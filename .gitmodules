@@ -1,0 +1,3 @@
+[submodule "singbox-server-selector"]
+	path = singbox-server-selector
+	url = https://github.com/PacketCipher/singbox-server-selector.git
