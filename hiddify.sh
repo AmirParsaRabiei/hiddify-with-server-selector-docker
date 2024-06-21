@@ -30,10 +30,20 @@
 # # REDIRECT
 # iptables -t mangle -A PREROUTING -j hiddify
 
+restart_count=0
 
 while true; do
     # Kill all running instances of HiddifyCli
     killall HiddifyCli
+
+    # Get the current time in seconds since epoch
+    current_time=$(date +%s)
+    
+    # Calculate the target time 12 hours from now
+    target_time=$((current_time + 12 * 3600))
+    
+    # Set restarted to false for the new cycle
+    restarted="false"
     
     # Check if the hiddify.json configuration file exists
     if [ -f "/hiddify/data/hiddify.json" ]; then
@@ -42,7 +52,19 @@ while true; do
         /hiddify/HiddifyCli run --config "$CONFIG" &
     fi
     
-    # Wait for 12 hours before restarting the loop
-    sleep 12h
+    # Sleep until the target time
+    while true; do
+        sleep 60  # Check every minute
+        current_time=$(date +%s)
+        
+        if [ "$current_time" -ge "$target_time" ]; then
+            if [ "$restarted" = "false" ]; then
+                restarted="true"
+                restart_count=$((restart_count + 1))
+                echo "Schedule: Restarting HiddifyCli. Restart count: $restart_count"
+                break
+            fi
+        fi
+    done
 done
 
