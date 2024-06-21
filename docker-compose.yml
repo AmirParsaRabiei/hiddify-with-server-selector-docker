@@ -23,7 +23,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-    restart: always
+    restart: unless-stopped
 
   server-selector:
     build:
@@ -45,7 +45,7 @@ services:
     depends_on:
       hiddify:
         condition: service_healthy
-    restart: always
+    restart: unless-stopped
 
   openvpn-socks5:
     image: curve25519xsalsa20poly1305/openvpn-socks5
@@ -62,4 +62,4 @@ services:
     ports:
       - "1080:1080/tcp"
       - "1080:1080/udp"
-    restart: always
+    restart: unless-stopped
