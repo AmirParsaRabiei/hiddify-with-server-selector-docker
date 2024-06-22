@@ -11,8 +11,8 @@ services:
       - "6450:6450"
     environment:
       # CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/xray/normal/mix"
-      CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/warp/config"
-      # CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/warp/config.json"
+      # CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/hiddify/warp"
+      CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/singbox/wireguard.json"
     volumes:
       - ./hiddify-data/:/hiddify/data/:Z
       - ./healthcheck.sh:/opt/healthcheck.sh:Z
