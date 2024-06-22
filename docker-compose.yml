@@ -66,6 +66,9 @@ services:
     ports:
       - "1080:1080/tcp"
       - "1080:1080/udp"
+    depends_on:
+      hiddify:
+        condition: service_healthy
     restart: unless-stopped
     networks:
       - switch
