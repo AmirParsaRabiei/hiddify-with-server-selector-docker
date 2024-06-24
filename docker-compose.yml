@@ -24,8 +24,7 @@ services:
       retries: 5
       start_period: 60s
     restart: unless-stopped
-    networks:
-      - switch
+
 
   server-selector:
     build:
@@ -48,8 +47,7 @@ services:
       hiddify:
         condition: service_healthy
     restart: unless-stopped
-    networks:
-      - switch
+
 
   openvpn-socks5:
     image: curve25519xsalsa20poly1305/openvpn-socks5
@@ -70,12 +68,4 @@ services:
       hiddify:
         condition: service_healthy
     restart: unless-stopped
-    networks:
-      - switch
 
-networks:
-  switch:
-    name: switch
-    driver: macvlan
-    driver_opts:
-      parent: enp5s0
