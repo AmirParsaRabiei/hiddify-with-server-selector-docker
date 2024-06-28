@@ -36,8 +36,8 @@ services:
       BEARER_TOKEN: "xXxLocalDockerxXx"
       TEST_URL: "http://cp.cloudflare.com"
       TIMEOUT: 5000
-      RETRIES: 60
-      RETRY_DELAY: 10
+      RETRIES: 100
+      RETRY_DELAY: 5
       MIN_UPTIME: 90
       CHECK_INTERVAL: 60
       UPDATE_INTERVAL: 14400
