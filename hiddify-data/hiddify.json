@@ -14,7 +14,7 @@
     "mtu": 9000,
     "strict-route": false,
     "connection-test-url": "http://cp.cloudflare.com/",
-    "url-test-interval": 600,
+    "url-test-interval": 600000,
     "enable-clash-api": true,
     "clash-api-port": 6756,
     "web-secret": "xXxLocalDockerxXx",
