@@ -40,7 +40,7 @@ while true; do
     current_time=$(date +%s)
     
     # Calculate the target time 12 hours from now
-    target_time=$((current_time + 12 * 3600))
+    target_time=$((current_time + SUBS_UPDATE_INTERVAL * 3600))
     
     # Set restarted to false for the new cycle
     restarted="false"

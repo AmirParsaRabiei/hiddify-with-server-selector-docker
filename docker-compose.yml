@@ -13,6 +13,7 @@ services:
       CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/xray/normal/mix"
       # CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/hiddify/warp"
       # CONFIG: "https://raw.githubusercontent.com/PacketCipher/TVC/main/subscriptions/singbox/wireguard.json"
+      SUBS_UPDATE_INTERVAL: 24 # Every 24 Hour
     volumes:
       - ./hiddify-data/:/hiddify/data/:Z
       - ./healthcheck.sh:/opt/healthcheck.sh:Z
@@ -40,7 +41,7 @@ services:
       RETRY_DELAY: 5
       MIN_UPTIME: 90
       CHECK_INTERVAL: 60
-      UPDATE_INTERVAL: 14400
+      UPDATE_INTERVAL: 24 # Every 24 Hour
       PROXY_GROUP_NAME: "select"
       LIGHT_MODE: 0
       LIGHTMODE_MAXIMUM_SERVERS: 10
