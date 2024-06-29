@@ -45,11 +45,12 @@ while true; do
     # Set restarted to false for the new cycle
     restarted="false"
     
+    curl -L -o /hiddify/data/config $CONFIG
     # Check if the hiddify.json configuration file exists
     if [ -f "/hiddify/data/hiddify.json" ]; then
-        /hiddify/HiddifyCli run --config "$CONFIG" --hiddify /hiddify/data/hiddify.json &
+        /hiddify/HiddifyCli run --config /hiddify/data/config --hiddify /hiddify/data/hiddify.json &
     else
-        /hiddify/HiddifyCli run --config "$CONFIG" &
+        /hiddify/HiddifyCli run --config /hiddify/data/config &
     fi
     
     # Sleep until the target time
